@@ -82,6 +82,5 @@ app.listen(port, ip, function() {
 
 //Start skype bot with express app
 var skype = require(process.cwd() + "/skype")(app);
-console.log(process.env.SKYPE_APP_ID);
 
 module.exports = app ;

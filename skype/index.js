@@ -103,6 +103,7 @@ module.exports = function(expressApp) {
                 data.params = tokens.slice(tokenIndex + 1);
                 //execute the command
                 if (typeof(commands[data.trigger]) !== "undefined") {
+                    console.log(data.trigger);
                     //notify the user the bot received command by "typing"
                     session.sendTyping();
                     //passes session the data to the command
