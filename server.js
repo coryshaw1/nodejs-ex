@@ -80,4 +80,7 @@ app.listen(port, ip, function() {
               Date(Date.now() ), ip, port);
 });
 
+//Start skype bot with express app
+var skype = require(process.cwd() + "/skype")(app);
+
 module.exports = app ;
