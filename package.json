@@ -4,14 +4,23 @@
   "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
   "dependencies": {
+    "botbuilder": "^3.9.1",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "discord.io": "^2.5.2",
     "ejs": "^2.4.1",
+    "espn-ff": "0.0.2",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
+    "moment": "^2.18.1",
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
-    "object-assign":"4.1.0"
+    "node-holidayapi": "^1.0.2",
+    "object-assign": "4.1.0",
+    "path": "^0.12.7",
+    "request": "^2.81.0",
+    "restify": "^6.0.0",
+    "urban": "^0.3.1"
   },
   "engine": {
     "node": "*",
@@ -23,12 +32,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/openshift/nodejs-ex.git"
+    "url": "http://github.com/coryshaw1/nodejs-ex.git"
   },
-  "author": "Steve Speicher <sspeiche@gmail.com>",
+  "author": "Cory Shaw <cory.shaw.dev@gmail.com>",
   "license": "CC-BY-1.0",
   "bugs": {
-    "url": "http://github.com/openshift/nodejs-ex/issues"
+    "url": "http://github.com/coryshaw1/nodejs-ex/issues"
   },
-  "homepage": "http://github.com/openshift/nodejs-ex"
+  "homepage": "http://github.com/coryshaw1/nodejs-ex"
 }
