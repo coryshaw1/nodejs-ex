@@ -11,9 +11,13 @@ module.exports = function(session, data) {
             if (err)
                 return session.send("Espn Error Getting Teams: " + err);
             
+            var teamList = '';
+
             teams.forEach(function(t) {
-                session.send('ID: ' + t.id + ' - ' + t.name + ' - ' + t.owner_name.replace("\r\n", ""));
+                teamList += 'ID: ' + t.id + ' - ' + t.name + ' - ' + t.owner_name.replace("\r\n", "") + '\n';
             });
+
+            session.send(teamList);
         });
     }
 
@@ -31,23 +35,27 @@ module.exports = function(session, data) {
         ff.getRoster(teamId, function(err, roster) {
             if (err)
                 return session.send("Espn Error Getting Roster: " + err);
+
+            var teamList = '';
     
-            session.send('ID: ' + team.id + ' - ' + team.name + ' - ' + team.owner_name.replace("\r\n", "") + '\nStarters\n');
+            teamList += 'ID: ' + team.id + ' - ' + team.name + ' - ' + team.owner_name.replace("\r\n", "") + '\nStarters\n';
             roster.starters.forEach(function(s) {
-                session.send(s.slot + ' - ' + s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points);
+                teamList += s.slot + ' - ' + s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n';
             });
-            session.send('Total Pts Projected: ' + roster.starters
+            teamList += 'Total Pts Projected: ' + roster.starters
                 .filter(function(s) { return s.matchup; })
                 .map(function(s) { return s.matchup.projected_or_current_points; })
                 .reduce(function(sum, value) {
                     return sum + value;
-                }, 0));
-            session.send('Bench');
+                }, 0) + '\n';
+            teamList += '\nBench\n';
             roster.bench
                 .filter(function(s) { return s.matchup; })
                 .forEach(function(s) {
-                    session.send(s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points);
+                    teamList += s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n';
                 });
+
+            session.send(teamList);
         });
     });
 }
