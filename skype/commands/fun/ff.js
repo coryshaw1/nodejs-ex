@@ -15,7 +15,7 @@ module.exports = function(session, data) {
             var teamList = '';
 
             teams.forEach(function(t) {
-                teamList += 'ID: ' + t.id + ' - ' + t.name + ' - ' + t.owner_name.replace("\r\n", "") + '\n';
+                teamList += 'ID: ' + t.id + ' - ' + t.name + ' - ' + t.owner_name.replace("\r\n", "") + '\n\n';
             });
 
             session.send(new builder.Message(session)
@@ -42,9 +42,9 @@ module.exports = function(session, data) {
 
             var teamList = '';
     
-            teamList += 'ID: ' + team.id + ' - ' + team.name + ' - ' + team.owner_name.replace("\r\n", "") + '\nStarters\n';
+            teamList += 'ID: ' + team.id + ' - ' + team.name + ' - ' + team.owner_name.replace("\r\n", "") + '\n\n\n\nStarters\n\n';
             roster.starters.forEach(function(s) {
-                teamList += s.slot + ' - ' + s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n';
+                teamList += s.slot + ' - ' + s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n\n';
             });
             teamList += 'Total Pts Projected: ' + roster.starters
                 .filter(function(s) { return s.matchup; })
@@ -52,11 +52,11 @@ module.exports = function(session, data) {
                 .reduce(function(sum, value) {
                     return sum + value;
                 }, 0) + '\n';
-            teamList += '\nBench\n';
+            teamList += '\n\n\nBench\n\n';
             roster.bench
                 .filter(function(s) { return s.matchup; })
                 .forEach(function(s) {
-                    teamList += s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n';
+                    teamList += s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n\n';
                 });
 
             session.send(new builder.Message(session)
