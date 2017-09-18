@@ -1,4 +1,5 @@
 var EspnFF = require('espn-ff');
+var builder = requre('botbuilder');
 
 var ff = new EspnFF({
     leagueId: process.env.ESPN_FF_LEAGUE_ID /* Your league id */,
@@ -17,7 +18,10 @@ module.exports = function(session, data) {
                 teamList += 'ID: ' + t.id + ' - ' + t.name + ' - ' + t.owner_name.replace("\r\n", "") + '\n';
             });
 
-            session.send(teamList);
+            session.send(new builder.Message(session)
+                .text(teamList)
+                .textFormat("markdown")
+                .textLocale("en-us"));
         });
     }
 
@@ -55,7 +59,10 @@ module.exports = function(session, data) {
                     teamList += s.player.name + ' (' + s.player.team + ') - ' + s.matchup.projected_or_current_points + '\n';
                 });
 
-            session.send(teamList);
+            session.send(new builder.Message(session)
+                .text(teamList)
+                .textFormat("markdown")
+                .textLocale("en-us"));
         });
     });
 }
