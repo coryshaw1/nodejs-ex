@@ -1,5 +1,5 @@
 var EspnFF = require('espn-ff');
-var builder = requre('botbuilder');
+var builder = require('botbuilder');
 
 var ff = new EspnFF({
     leagueId: process.env.ESPN_FF_LEAGUE_ID /* Your league id */,
